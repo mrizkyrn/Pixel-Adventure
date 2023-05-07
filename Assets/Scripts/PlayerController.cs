@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +10,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckDistance = 0.1f;
     [SerializeField] private LayerMask terrainLayerMask;
+    [SerializeField] private Animator flagAnimator;
+
+    public TextMeshProUGUI scoreText;
+
+    public int score = 0;
 
     private bool isRunning;
     private bool isGrounded;
@@ -15,8 +22,8 @@ public class PlayerController : MonoBehaviour
     private int xInput = 0;
     private int facingDirection = 1;
 
-    private Rigidbody2D rb;
-    private Animator animator;
+    public Rigidbody2D rb;
+    public Animator animator;
     private BoxCollider2D col;
 
     // Start is called before the first frame update
@@ -31,7 +38,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         isGrounded = IsGrounded();
-        Debug.Log(isGrounded);
 
         Move();
 
@@ -103,6 +109,37 @@ public class PlayerController : MonoBehaviour
     {
         facingDirection *= -1;
         rb.transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+
+    private void Respawn()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void CollectFruit()
+    {
+        score += 10;
+        scoreText.text = score.ToString();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.tag);
+
+        if (collision.gameObject.CompareTag("Banana"))
+        {
+            CollectFruit();
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Flag"))
+        {
+            flagAnimator.SetTrigger("Finish");
+        }
+        else if (collision.gameObject.CompareTag("Trap"))
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+            animator.SetTrigger("Death");
+        }
     }
 
     void OnDrawGizmos()

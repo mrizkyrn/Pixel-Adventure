@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Banana
+  - Flag
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -44,9 +47,15 @@ TagManager:
   - name: Backgrounds
     uniqueID: 3884275449
     locked: 0
+  - name: Background Object
+    uniqueID: 2153944209
+    locked: 0
   - name: Platformers
     uniqueID: 101903431
     locked: 0
   - name: Player
     uniqueID: 1809277653
+    locked: 0
+  - name: UI
+    uniqueID: 4277858631
     locked: 0
