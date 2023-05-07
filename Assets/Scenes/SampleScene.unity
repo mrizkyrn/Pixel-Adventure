@@ -16411,6 +16411,7 @@ GameObject:
   - component: {fileID: 1955652975}
   - component: {fileID: 1955652974}
   - component: {fileID: 1955652973}
+  - component: {fileID: 1955652977}
   m_Layer: 0
   m_Name: Finish
   m_TagString: Flag
@@ -16531,6 +16532,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1955652977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955652972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3029ee40e36e2064891387cc24666953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2027728884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2487324222846793217, guid: 5bee825a6fa64da4986d8863db23ae14, type: 3}
